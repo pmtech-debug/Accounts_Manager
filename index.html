@@ -91,7 +91,8 @@
             transition: background 0.3s;
         }
         .logo-sidebar { 
-            width: 180px; 
+            width: 100%; 
+            max-width: 220px; /* Standardized Desktop Size */
             margin-bottom: 40px; 
             align-self: center; 
             background: white; 
@@ -128,11 +129,12 @@
 
         /* TOP HEADER BAR */
         .top-bar {
-            padding: 20px 30px;
+            padding: 15px 25px; /* Adjusted padding */
             border-bottom: 1px solid var(--border);
             display: flex;
             align-items: center;
             background: var(--bg-card);
+            height: 90px; /* Fixed height for header */
         }
         
         /* Mobile Logo (Hidden on Desktop) */
@@ -315,15 +317,15 @@
             /* MOBILE LOGO DISPLAY */
             .logo-mobile { 
                 display: block; 
-                height: 32px; 
+                height: 65px; /* BIG AND STANDARD SIZE */
                 width: auto; 
                 object-fit: contain; 
                 margin-right: 15px; 
                 background: white; 
-                padding: 4px; 
-                border-radius: 4px;
+                padding: 5px; 
+                border-radius: 8px;
             }
-            .page-title { display: none; } /* Hide title on mobile to save space */
+            .page-title { display: none; } /* Hide title on mobile to show Logo */
         }
 
         .hidden { display: none; }
@@ -335,7 +337,7 @@
 <div id="app-container">
     
     <div class="sidebar">
-        <img src="login.png" alt="GGX Logo" class="logo-sidebar" onerror="this.src='https://via.placeholder.com/150?text=LOGO+HERE'">
+        <img src="login.png" alt="GGX Logo" class="logo-sidebar" onerror="this.src='https://via.placeholder.com/200x80?text=LOGO'">
         
         <div class="nav-btn active" onclick="nav('new')" id="nav-new">
             <i class="fas fa-file-invoice"></i> New Invoice
@@ -553,7 +555,7 @@
 </div>
 
 <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzB02-bz09pGBTBLxp2zfMLwxfCcmdETdw-BA4D2x8qPFLvBEq_ftgVUjp7jk3r8b8f/exec";
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzo8JHefzPfgS4do2PaTk-NV2bV3RGjLJT8pXPW0ZLrEE0Ll1u11zxJUkYRNn2Z6dw/exec";
     
     let historyData = [];
     let chartInstance = null;
@@ -584,10 +586,9 @@
         ['new', 'dash', 'hist'].forEach(v => document.getElementById('view-' + v).classList.add('hidden'));
         document.getElementById('view-' + tab).classList.remove('hidden');
         
-        const titles = { 'new': 'New Invoice', 'dash': 'Dashboard', 'hist': 'History' };
-        
-        // Update Title logic: If mobile, hide title (because logo is shown). If desktop, show text.
+        // Update Title: Use Logo for Mobile on "New Invoice" tab if needed, or text for others
         if (window.innerWidth > 768) {
+             const titles = { 'new': 'New Invoice', 'dash': 'Dashboard', 'hist': 'History' };
              document.getElementById('page-title').innerText = titles[tab];
         }
 
